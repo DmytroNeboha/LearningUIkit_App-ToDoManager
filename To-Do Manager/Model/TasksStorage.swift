@@ -17,10 +17,10 @@ class TaskStorage: TasksStorageProtocol {
         let testTasks: [TaskProtocol] = [
             Task(title: "Купить хлеб", type: .normal, status: .planned),
             Task(title: "Помыть кота", type: .important, status: .planned),
-            Task(title: "Отдать долг Арнольду", type: .important, status: .completed),
+            Task(title: "Полить цветы", type: .important, status: .completed),
             Task(title: "Купить новый пылесос", type: .normal, status: .completed),
-            Task(title: "Подарить цветы", type: .important, status: .planned),
-            Task(title: "Позвонить родителям", type: .important, status: .planned)]
+            Task(title: "Купить торт", type: .important, status: .planned),
+            Task(title: "Позвонить в банк", type: .important, status: .planned)]
         return testTasks
     }
     

@@ -11,7 +11,20 @@ class TaskListController: UITableViewController {
     // хранилище задач
     var taskStorage: TasksStorageProtocol = TaskStorage()
     // коллекция задач
-    var tasks: [TaskPriority:[TaskProtocol]] = [:]
+    var tasks: [TaskPriority:[TaskProtocol]] = [:] {
+        didSet {
+            // сортировка списка задач
+            for (tasksGroupPriority, tasksGroup) in tasks {
+                tasks[tasksGroupPriority] = tasksGroup.sorted { task1, task2 in
+                    let task1position = tasksStatusPosition.firstIndex(of: task1.status) ?? 0
+                    let task2position = tasksStatusPosition.firstIndex(of: task2.status) ?? 0
+                    return task1position < task2position
+                }
+            }
+        }
+    }
+    
+    
     // порядок отображения секций по типам.
     // индекс в массиве соответствует индексу секции в таблице
     var sectionsTypesPosition: [TaskPriority] = [.important, .normal]
@@ -25,6 +38,25 @@ class TaskListController: UITableViewController {
         loadTasks()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           // 1. Получаем данные о задаче, по которой было произведено нажатие
+           let taskType = sectionsTypesPosition[indexPath.section]
+           guard let _ = tasks[taskType]?[indexPath.row] else {
+               return
+           }
+           // 2. Убеждаемся, что задача не является выполненной
+           guard tasks[taskType]![indexPath.row].status == .planned else {
+               // снимаем выделение со строки
+               tableView.deselectRow(at: indexPath, animated: true)
+               return
+           }
+           // 3. Отмечаем задачу как выполненную
+           tasks[taskType]![indexPath.row].status = .completed
+           // 4. Перезагружаем секцию таблицы
+           tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
+       }
+
+    
     private func loadTasks() {
         // подготовка коллекции с задачами
         // будем использовать только те задачи, для которых определена секция в таблице
@@ -34,15 +66,6 @@ class TaskListController: UITableViewController {
         // загрузка и разбор задач из хранилища
         taskStorage.loadTasks().forEach { task in
             tasks[task.type]?.append(task)
-        }
-        
-        // сортировка списка задач
-        for (tasksGroupPriority, tasksGroup) in tasks {
-            tasks[tasksGroupPriority] = tasksGroup.sorted { task1, task2 in
-                let task1position = tasksStatusPosition.firstIndex(of: task1.status) ?? 0
-                let task2position = tasksStatusPosition.firstIndex(of: task2.status) ?? 0
-                return task1position < task2position
-            }
         }
     }
     

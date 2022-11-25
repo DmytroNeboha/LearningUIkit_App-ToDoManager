@@ -39,6 +39,30 @@ class TaskListController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
     }
     
+    // Ручная сортировка списка задач.
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        // секция, из которой происходит перемещение
+        let taskTypeFrom = sectionsTypesPosition[sourceIndexPath.section]
+        // секция, в которуюю происходит перемещение
+        let taskTypeTo = sectionsTypesPosition[destinationIndexPath.section]
+        
+        // безопасно извлекаем задачу, тем самым копируем ее
+        guard let movedTask = tasks[taskTypeFrom]?[sourceIndexPath.row] else {
+            return
+        }
+        
+        // удаляем задачу с места, от куда она перенесена
+        tasks[taskTypeFrom]!.remove(at: sourceIndexPath.row)
+        // вставляем задачу на новую позицию
+        tasks[taskTypeTo]!.insert(movedTask, at: destinationIndexPath.row)
+        // если секция изменилась, изменяем тип задачи в соответствии с новой позицией
+        if taskTypeFrom != taskTypeTo {
+            tasks[taskTypeTo]![destinationIndexPath.row].type = taskTypeTo
+        }
+        // обновляем данные
+        tableView.reloadData()
+    }
+    
     // Реализация метода осуществляющий удаление задачи
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let taskType = sectionsTypesPosition[indexPath.section]

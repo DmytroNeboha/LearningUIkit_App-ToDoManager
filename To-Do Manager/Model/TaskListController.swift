@@ -37,7 +37,7 @@ class TaskListController: UITableViewController {
         loadTasks()
     }
     
-    // Реализация функции 
+    // Реализация функции изменения статуса задачи с Выполнено на Запланировано. 
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         //  получаем данные о задчачи, которую небходимо перевести в статус За-планирована.
         let taskType = sectionsTypesPosition[indexPath.section]

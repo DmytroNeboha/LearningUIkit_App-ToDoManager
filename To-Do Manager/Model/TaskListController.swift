@@ -24,7 +24,6 @@ class TaskListController: UITableViewController {
         }
     }
     
-    
     // порядок отображения секций по типам.
     // индекс в массиве соответствует индексу секции в таблице
     var sectionsTypesPosition: [TaskPriority] = [.important, .normal]
@@ -38,6 +37,30 @@ class TaskListController: UITableViewController {
         loadTasks()
     }
     
+    // Реализация функции 
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        //  получаем данные о задчачи, которую небходимо перевести в статус За-планирована.
+        let taskType = sectionsTypesPosition[indexPath.section]
+        guard let _ = tasks[taskType]?[indexPath.row] else {
+            return nil
+        }
+        
+        // проверяем, что задача имеет статус Выполено.
+        guard tasks[taskType]![indexPath.row].status == .completed else {
+            return nil
+        }
+        
+        // создаем действие для изменения статуса
+        let actionSwipeInstance = UIContextualAction(style: .normal, title: "Не выполнена") { _,_,_ in
+            self.tasks[taskType]![indexPath.row].status = .planned
+            self.tableView.reloadSections(IndexSet(arrayLiteral: indexPath.section), with: .automatic)
+        }
+        
+        // возвращаем настроенный объект
+        return UISwipeActionsConfiguration(actions: [actionSwipeInstance])
+    }
+        
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            // 1. Получаем данные о задаче, по которой было произведено нажатие
            let taskType = sectionsTypesPosition[indexPath.section]

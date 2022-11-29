@@ -3,12 +3,15 @@ import UIKit
 class TaskEditController: UITableViewController {
     
     @IBOutlet var taskTitle: UITextField!
+    @IBOutlet var taskTypeLabel: UILabel!
     
     // параметры задачи
     var taskText: String = ""
     var taskType: TaskPriority = .normal
     var taskStatus: TaskStatus = .planned
     var doAfterEdit: ((String, TaskPriority, TaskStatus) -> Void)?
+    // Название типов задач
+    private var taskTitles: [TaskPriority: String] = [.important: "Важная", .normal: "Текущая"]
     
     
 
@@ -16,6 +19,10 @@ class TaskEditController: UITableViewController {
         super.viewDidLoad()
         // обновление текстового поля с названием задачи
         taskTitle?.text = taskText
+        
+        // обновление метки в соответсвтии текущим типом
+        taskTypeLabel?.text = taskTitles[taskType]
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

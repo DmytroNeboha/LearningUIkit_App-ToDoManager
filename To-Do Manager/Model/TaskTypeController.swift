@@ -2,6 +2,8 @@ import UIKit
 
 class TaskTypeController: UITableViewController {
     
+    var doAfterTypeSelected: ((TaskPriority) -> Void)?
+    
     // 1. Кортеж описывающий тип задачи
     typealias TypeCellDescription = (type: TaskPriority, title: String, description: String)
     
@@ -53,5 +55,14 @@ class TaskTypeController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // получаем выбраный тип
+        let selectedType = taskTypesInformation[indexPath.row].type
+        // вызов обработчика
+        doAfterTypeSelected?(selectedType)
+        // переход к предыдущему экрану
+        navigationController?.popViewController(animated: true)
     }
 }

@@ -137,20 +137,20 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="yHq-Dp-xoR">
-                                        <rect key="frame" x="0.0" y="62.333332061767578" width="390" height="42.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="62.333332061767578" width="390" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yHq-Dp-xoR" id="93C-bp-Fpl">
-                                            <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="42.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Тип задачи" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4Q-RJ-5j5">
-                                                    <rect key="frame" x="19.999999999999993" y="11.000000000000002" width="89.333333333333314" height="20.666666666666671"/>
+                                                    <rect key="frame" x="19.999999999999993" y="11" width="89.333333333333314" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLE-AG-M1K">
-                                                    <rect key="frame" x="109.33333333333333" y="11.000000000000002" width="242.33333333333337" height="20.666666666666671"/>
+                                                    <rect key="frame" x="109.33333333333333" y="11" width="242.33333333333337" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
@@ -167,9 +167,12 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="eLE-AG-M1K" secondAttribute="bottom" id="wDs-C2-OIC"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="TD4-IR-fBA" kind="show" id="ZZ3-YV-Exa"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="38" id="ihQ-9j-tvu">
-                                        <rect key="frame" x="0.0" y="105" width="390" height="38"/>
+                                        <rect key="frame" x="0.0" y="105.33333206176758" width="390" height="38"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ihQ-9j-tvu" id="Ikp-IS-B2a">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="38"/>
@@ -192,7 +195,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ehh-5a-BV8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1927.6923076923076" y="84.597156398104261"/>
+            <point key="canvasLocation" x="1831" y="-272"/>
+        </scene>
+        <!--Task Type Controller-->
+        <scene sceneID="S3B-sC-oS7">
+            <objects>
+                <tableViewController id="TD4-IR-fBA" customClass="TaskTypeController" customModule="To_Do_Manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="mka-gH-StV">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="TD4-IR-fBA" id="Rrn-qV-4fs"/>
+                            <outlet property="delegate" destination="TD4-IR-fBA" id="cQb-Sh-T1d"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="8wi-iE-lUl"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hk3-DU-5gM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2597" y="-272"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0sx-zC-bAe">
@@ -210,7 +232,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26g-6f-fPC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="86" y="85"/>
+            <point key="canvasLocation" x="34" y="-272"/>
         </scene>
     </scenes>
     <resources>

@@ -95,7 +95,7 @@
                     <navigationItem key="navigationItem" id="64C-Ke-ijF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ouR-Jb-ZIV">
                             <connections>
-                                <segue destination="cqv-H1-b9A" kind="show" id="IOb-9W-nof"/>
+                                <segue destination="cqv-H1-b9A" kind="show" identifier="toCreateScreen" id="IOb-9W-nof"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -137,20 +137,20 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="yHq-Dp-xoR">
-                                        <rect key="frame" x="0.0" y="62.333332061767578" width="390" height="42.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="62.333332061767578" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yHq-Dp-xoR" id="93C-bp-Fpl">
-                                            <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="42.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Тип задачи" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4Q-RJ-5j5">
-                                                    <rect key="frame" x="19.999999999999993" y="11.000000000000002" width="89.333333333333314" height="20.666666666666671"/>
+                                                    <rect key="frame" x="19.999999999999993" y="11.000000000000002" width="89.333333333333314" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLE-AG-M1K">
-                                                    <rect key="frame" x="109.33333333333333" y="11.000000000000002" width="242.33333333333337" height="20.666666666666671"/>
+                                                    <rect key="frame" x="109.33333333333333" y="11.000000000000002" width="242.33333333333337" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
@@ -172,13 +172,13 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="38" id="ihQ-9j-tvu">
-                                        <rect key="frame" x="0.0" y="105" width="390" height="38"/>
+                                        <rect key="frame" x="0.0" y="106" width="390" height="38"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ihQ-9j-tvu" id="Ikp-IS-B2a">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="38"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idv-6X-hf3">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выполнена" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idv-6X-hf3">
                                                     <rect key="frame" x="20" y="11" width="301" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -206,7 +206,13 @@
                             <outlet property="delegate" destination="cqv-H1-b9A" id="lN7-He-jey"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="lmU-uF-FFa"/>
+                    <navigationItem key="navigationItem" id="lmU-uF-FFa">
+                        <barButtonItem key="rightBarButtonItem" title="Сохранить" id="PKW-Jz-PVK">
+                            <connections>
+                                <action selector="saveTask:" destination="cqv-H1-b9A" id="yDy-Zt-V1W"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="taskStatusSwitch" destination="QNe-eL-5RQ" id="mSH-Y3-u0o"/>
                         <outlet property="taskTitle" destination="vXw-gc-GQI" id="6Kq-Qq-lhj"/>

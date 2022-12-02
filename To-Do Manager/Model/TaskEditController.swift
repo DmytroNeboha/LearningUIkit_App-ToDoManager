@@ -14,7 +14,16 @@ class TaskEditController: UITableViewController {
     // Название типов задач
     private var taskTitles: [TaskPriority: String] = [.important: "Важная", .normal: "Текущая"]
     
-    
+    @IBAction func saveTask(_ sender: UIBarButtonItem) {
+        // получаем актуальныйе значения
+        let title = taskTitle?.text ?? ""
+        let type = taskType
+        let status: TaskStatus = taskStatusSwitch.isOn ? .completed: .planned
+        // вызываем обработчик
+        doAfterEdit?(title, type, status)
+        // возвращаемся к предыдущему экрану
+        navigationController?.popViewController(animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +38,6 @@ class TaskEditController: UITableViewController {
             taskStatusSwitch.isOn = true
         }
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

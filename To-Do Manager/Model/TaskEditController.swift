@@ -4,6 +4,7 @@ class TaskEditController: UITableViewController {
     
     @IBOutlet var taskTitle: UITextField!
     @IBOutlet var taskTypeLabel: UILabel!
+    @IBOutlet var taskStatusSwitch: UISwitch!
     
     // параметры задачи
     var taskText: String = ""
@@ -22,6 +23,11 @@ class TaskEditController: UITableViewController {
         
         // обновление метки в соответсвтии текущим типом
         taskTypeLabel?.text = taskTitles[taskType]
+        
+        // обновляем статус задачи
+        if taskStatus == .completed {
+            taskStatusSwitch.isOn = true
+        }
     }
 
     // MARK: - Table view data source

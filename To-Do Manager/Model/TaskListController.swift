@@ -21,6 +21,12 @@ class TaskListController: UITableViewController {
                     return task1position < task2position
                 }
             }
+            // сохранение задач
+            var savingArray: [TaskProtocol] = []
+            tasks.forEach { _, value in
+                savingArray += value
+            }
+            taskStorage.saveTasks(savingArray)
         }
     }
     
@@ -34,9 +40,22 @@ class TaskListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // загрузка задач
-        loadTasks()
+//        loadTasks()
         // кнопка активации режима редактирования
         navigationItem.leftBarButtonItem = editButtonItem
+    }
+    
+    // получение списка задач, их разбор и установка в свойство tasks
+    func setTasks(_ taskCollection: [TaskProtocol]) {
+        // подготовка коллекции с задачами. Будем использовать только те задачи, для которых определене секция
+        sectionsTypesPosition.forEach { taskType in
+            tasks[taskType] = []
+        }
+        
+        // загрузка и разбор задач из хранилища
+        taskCollection.forEach { task in
+            tasks[task.type]?.append(task)
+        }
     }
     
     // Ручная сортировка списка задач.
